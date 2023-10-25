@@ -11,14 +11,26 @@ import { subtitle, title } from "@/components/primitives"
 import { cn } from "@/lib"
 import { button as buttonStyles } from "@nextui-org/theme"
 
-const Section: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, className }) => (
-    <section className={cn("", className)}>{children}</section>
+type SectionComponentProps = React.HTMLAttributes<HTMLDivElement> & {
+    justify?: "evenly" | "around" | "between" | "center"
+}
+
+const Section: React.FC<SectionComponentProps> = ({ children, justify, className }) => (
+    <section
+        className={cn(
+            "flex flex-col lg:flex-row w-full items-center",
+            `justify-${justify}`,
+            className
+        )}
+    >
+        {children}
+    </section>
 )
 
 export default function HomePage() {
     return (
         <>
-            <Section className="flex flex-col lg:flex-row w-full items-center justify-around py-4">
+            <Section justify="around">
                 <div className="space-y-8">
                     <div className="space-y-8">
                         <h1>
@@ -72,7 +84,10 @@ export default function HomePage() {
                     }}
                 />
             </Section>
-            <Section className="flex flex-col lg:flex-row w-full items-center justify-evenly gap-20">
+            <Section
+                justify="evenly"
+                className="gap-20"
+            >
                 <div className="space-y-4">
                     <h3 className={title({ size: "sm", className: "flex justify-center" })}>Main Tech Stack</h3>
                     <ul className="grid grid-cols-4">
