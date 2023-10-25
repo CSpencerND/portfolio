@@ -15,5 +15,5 @@
     top: 10px;
     left: 10px;
     border-radius: 20px;
-    @apply absolute w-full h-full border-2 border-primary-100 bg-default-50;
+    @apply absolute -z-10 w-full h-full border-2 border-primary-100 bg-default-50;
 }

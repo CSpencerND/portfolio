@@ -53,7 +53,7 @@ export default function HomePage() {
                             width={400}
                             height={400}
                             classNames={{
-                                wrapper: "lg:hidden dark:ring-2 dark:ring-default-50 headshot-flair-sm mb-4 mr-6",
+                                wrapper: "lg:hidden dark:ring-2 dark:ring-default-50 headshot-flair-sm mb-4 mr-6 isolate",
                                 img: "w-32 h-32",
                             }}
                         />
@@ -82,7 +82,7 @@ export default function HomePage() {
                     width={400}
                     height={400}
                     classNames={{
-                        wrapper: "max-lg:hidden dark:ring-2 dark:ring-default-50 headshot-flair-lg mb-4",
+                        wrapper: "max-lg:hidden dark:ring-2 dark:ring-default-50 headshot-flair-lg mb-4 isolate",
                         img: "w-full h-full",
                     }}
                 />
