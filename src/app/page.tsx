@@ -4,7 +4,7 @@ import { Link } from "@nextui-org/link"
 import NextImage from "next/image"
 import NextLink from "next/link"
 
-import { mainFrameworks, mainLangs } from "@/components/icons"
+import { mainFrameworks, mainLangs, otherTech, platforms } from "@/components/icons"
 
 import { subtitle, title } from "@/components/primitives"
 
@@ -12,17 +12,17 @@ import { cn } from "@/lib"
 import { button as buttonStyles } from "@nextui-org/theme"
 
 const Section: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, className }) => (
-    <section className={cn("space-y-8", className)}>{children}</section>
+    <section className={cn("", className)}>{children}</section>
 )
 
 export default function HomePage() {
     return (
         <>
-            <Section className="flex flex-col lg:flex-row lg:gap-x-8">
+            <Section className="flex flex-col lg:flex-row w-full items-center justify-around py-4">
                 <div className="space-y-8">
                     <div className="space-y-8">
-                        <h1 className="space-y-2">
-                            <span className={subtitle()}>Welcome, I&apos;m</span>
+                        <h1>
+                            <span className={subtitle({ class: "mt-0" })}>Welcome, I&apos;m</span>
                             <strong className={title({ color: "violet", class: "-ml-0.5" })}>
                                 Christopher Spencer
                             </strong>
@@ -30,25 +30,34 @@ export default function HomePage() {
                         <h2 className={title({ class: "block text-default-600", size: "sm" })}>I build web apps</h2>
                     </div>
 
-                    <div className="flex gap-4">
-                        <Link
-                            isExternal
-                            as={NextLink}
-                            href="/"
-                            className={buttonStyles({ color: "primary", variant: "shadow" })}
-                        >
-                            Get In Touch
-                        </Link>
-
-                        {/* <Link */}
-                        {/*     isExternal */}
-                        {/*     as={NextLink} */}
-                        {/*     className={buttonStyles({ variant: "bordered" })} */}
-                        {/*     href={siteConfig.links.github} */}
-                        {/* > */}
-                        {/*     <GithubIcon size={20} /> */}
-                        {/*     GitHub */}
-                        {/* </Link> */}
+                    <div className="flex gap-4 items-center justify-between">
+                        <Image
+                            as={NextImage}
+                            src="/assets/headshot.webp"
+                            alt="Headshot of Christopher Spencer"
+                            width={400}
+                            height={400}
+                            classNames={{
+                                wrapper: "lg:hidden dark:ring-2 dark:ring-default-50 headshot-flair-sm mb-4 mr-6",
+                                img: "w-32 h-32",
+                            }}
+                        />
+                        <div className="flex flex-col lg:flex-row gap-8">
+                            <Link
+                                as={NextLink}
+                                href="/"
+                                className={buttonStyles({ color: "primary", variant: "shadow" })}
+                            >
+                                Get In Touch
+                            </Link>
+                            <Link
+                                as={NextLink}
+                                className={buttonStyles({ color: "primary", variant: "ghost" })}
+                                href="#"
+                            >
+                                View Portfolio
+                            </Link>
+                        </div>
                     </div>
                 </div>
                 <Image
@@ -57,46 +66,62 @@ export default function HomePage() {
                     alt="Headshot of Christopher Spencer"
                     width={400}
                     height={400}
-                    // shadow="lg"
                     classNames={{
-                        wrapper: "dark:ring-2 dark:ring-default-50 headshot-flair translate max-lg:!mt-14 lg:!ml-8",
+                        wrapper: "max-lg:hidden dark:ring-2 dark:ring-default-50 headshot-flair-lg mb-4",
                         img: "w-full h-full",
                     }}
                 />
             </Section>
-            <Section className="space-y-20">
+            <Section className="flex flex-col lg:flex-row w-full items-center justify-evenly gap-20">
                 <div className="space-y-4">
-                    <h3 className={title({ size: "sm" })}>Main Tech Stack</h3>
-                    <ul className="flex flex-wrap">
+                    <h3 className={title({ size: "sm", className: "flex justify-center" })}>Main Tech Stack</h3>
+                    <ul className="grid grid-cols-4">
                         {mainLangs.map(({ icon, text }, i) => (
                             <li
                                 key={i}
-                                className="w-1/4 flex flex-col items-center"
+                                className="flex flex-col items-center"
                             >
-                                {icon({ className: "w-6/12 h-6/12 overflow-visible" })}
+                                {icon({ className: "w-1/2 overflow-visible" })}
                                 <span className="-mt-4">{text}</span>
                             </li>
                         ))}
                     </ul>
-                    <ul className="flex flex-wrap">
+                    <ul className="grid grid-cols-4">
                         {mainFrameworks.map(({ icon, text }, i) => (
                             <li
                                 key={i}
-                                className="w-1/4 flex flex-col items-center"
+                                className="flex flex-col items-center"
                             >
-                                {icon({ className: "w-6/12 h-6/12 overflow-visible" })}
+                                {icon({ className: "w-1/2 overflow-visible" })}
                                 <span className="-mt-4">{text}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
-                <div>
-                    <h3 className={title({ size: "sm" })}>Other Technologies</h3>
-                    <ul></ul>
-                </div>
-                <div>
-                    <h3 className={title({ size: "sm" })}>Also Familiar With</h3>
-                    <ul></ul>
+                <div className="space-y-4 !mt-0">
+                    <h3 className={title({ size: "sm", className: "flex justify-center" })}>Other Technologies</h3>
+                    <ul className="grid grid-cols-4">
+                        {otherTech.map(({ icon, text }, i) => (
+                            <li
+                                key={i}
+                                className="flex flex-col items-center"
+                            >
+                                {icon({ className: "w-1/2 overflow-visible" })}
+                                <span className="-mt-4">{text}</span>
+                            </li>
+                        ))}
+                    </ul>
+                    <ul className="grid grid-cols-4">
+                        {platforms.map(({ icon, text }, i) => (
+                            <li
+                                key={i}
+                                className="flex flex-col items-center"
+                            >
+                                {icon({ className: "w-1/2 overflow-visible" })}
+                                <span className="-mt-4">{text}</span>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </Section>
         </>
