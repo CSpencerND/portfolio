@@ -19,7 +19,10 @@ const Section: React.FC<SectionComponentProps> = ({ children, justify, className
     <section
         className={cn(
             "flex flex-col lg:flex-row w-full items-center",
-            `justify-${justify}`,
+            justify === "evenly" ? "justify-evenly" : "",
+            justify === "around" ? "justify-around" : "",
+            justify === "between" ? "justify-between" : "",
+            justify === "center" ? "justify-center" : "",
             className
         )}
     >
@@ -138,6 +141,9 @@ export default function HomePage() {
                         ))}
                     </ul>
                 </div>
+            </Section>
+            <Section>
+                <h3 className={title({ size: "sm" })}>Portfolio</h3>
             </Section>
         </>
     )
