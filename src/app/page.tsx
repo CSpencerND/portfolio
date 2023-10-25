@@ -53,7 +53,8 @@ export default function HomePage() {
                             width={400}
                             height={400}
                             classNames={{
-                                wrapper: "lg:hidden dark:ring-2 dark:ring-default-50 headshot-flair-sm mb-4 mr-6 isolate",
+                                wrapper:
+                                    "lg:hidden dark:ring-2 dark:ring-default-50 headshot-flair-sm mb-4 mr-6 isolate",
                                 img: "w-32 h-32",
                             }}
                         />
@@ -68,9 +69,9 @@ export default function HomePage() {
                             <Link
                                 as={NextLink}
                                 className={buttonStyles({ color: "primary", variant: "ghost" })}
-                                href="#"
+                                href="#projects"
                             >
-                                View Portfolio
+                                View Projects
                             </Link>
                         </div>
                     </div>
@@ -142,9 +143,46 @@ export default function HomePage() {
                     </ul>
                 </div>
             </Section>
-            <Section>
-                <h3 className={title({ size: "sm" })}>Portfolio</h3>
+            <Section id="projects">
+                <div className="space-y-8  max-w-[60rem] mx-auto">
+                    <h3 className={title({ size: "sm", class: "flex justify-center lg:justify-start" })}>Projects</h3>
+                    {/* <ul className="grid grid-cols-1 sm:grid-cols-2 gap-8"> */}
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        {projects.map(({ imageSrc, imageAlt, title, description }, i) => (
+                            <li
+                                key={i}
+                                className="flex flex-col items-center"
+                            >
+                                <Image
+                                    as={NextImage}
+                                    src={imageSrc}
+                                    alt={imageAlt}
+                                    width={900}
+                                    height={600}
+                                    className="aspect-video object-top object-cover ring-2 ring-default-50"
+                                    isZoomed
+                                />
+                                <h4 className={subtitle({class: "pl-2"})}>{title}</h4>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </Section>
         </>
     )
 }
+
+const projects = [
+    {
+        imageSrc: "/assets/wp4l2.webp",
+        imageAlt: "",
+        title: "WordPlay4Lyfe",
+        description: "Clothing store built with Shopify's Hydrogen framework",
+    },
+    {
+        imageSrc: "/assets/velocita.webp",
+        imageAlt: "",
+        title: "MotoVelocita",
+        description: "Motorcycle Repair & Custom",
+    },
+]
